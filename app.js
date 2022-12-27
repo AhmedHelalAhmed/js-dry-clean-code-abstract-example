@@ -1,18 +1,31 @@
-const findIt = function () {
-    let start = 1,
-        end = 100,
-        multiple = 3,
-        total = 0;
+const START = 1;
+const END = 100;
+const MULTIPLE = 3;
 
+let getSumOf = function (arr) {
+    let total = 0;
+    while (arr.length > 0) {
+        total += arr.pop();
+    }
+    return total;
+}
+
+let findMultiples = function (start, end, multiple) {
+    const results = [];
     while (start <= end) {
         if (start % multiple === 0) {
-            total += start;
+            results.push(start);
         }
         start++;
     }
+    return results;
+}
 
-    document.getElementById("content").innerHTML = 'The sum of all numbers divisible by 3 from 1 to 100 is: ' + total;
-};
+function getContent() {
+    return `The getSumOf of all numbers divisible by ${MULTIPLE} from ${START} to ${END} is: ` + getSumOf(findMultiples(START, END, MULTIPLE));
+}
 
-document.addEventListener('DOMContentLoaded', findIt);
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("content").innerHTML = getContent();
+});
 
